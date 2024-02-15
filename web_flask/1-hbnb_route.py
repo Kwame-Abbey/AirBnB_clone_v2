@@ -12,5 +12,11 @@ def hello():
     return "Hello HBNB!"
 
 
+@app.route("/hbnb", strict_slashes=False)
+def hbnb():
+    """Returns the string 'hbnb'"""
+    return "HBNB"
+
+
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0', port=5000)
