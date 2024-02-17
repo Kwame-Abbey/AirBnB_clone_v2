@@ -29,7 +29,8 @@ class DBStorage:
         HOST = getenv('HBNB_MYSQL_HOST')
         DB = getenv('HBNB_MYSQL_DB')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(USER, PWD, HOST, DB),
+                                      format(USER, PWD, HOST, DB,
+                                             "?charset=latin1"),
                                       pool_pre_ping=True)
 
         if getenv('HBNB_ENV') == "test":
@@ -39,7 +40,8 @@ class DBStorage:
         """returns current database session"""
         objs = {}
         if cls is not None:
-            for obj in self.__session.query(models[cls]):
+            cls = cls if type(cls) != str else models[cls]
+            for obj in self.__session.query(cls):
                 objs[obj.__class__.__name__ + '.' + obj.id] = obj
         else:
             for model in models:
