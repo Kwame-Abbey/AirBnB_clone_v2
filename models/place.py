@@ -74,6 +74,6 @@ class Place(BaseModel, Base):
 
         @amenities.setter
         def amenities(self, value):
-            """adds a new aminity"""
+            """adds a new amenity"""
             if type(value) == Amenity:
                 self.amenity_ids.append(value.id)
