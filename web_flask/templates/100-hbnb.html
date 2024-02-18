@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>HBNB</title>
+		<link rel="stylesheet" href="static/styles/4-common.css">
+		<link rel="stylesheet" href="static/styles/6-filters.css">
+		<link rel="stylesheet" href="static/styles/3-header.css">
+		<link rel="stylesheet" href="static/styles/3-footer.css">
+		<link rel="stylesheet" href="static/styles/8-places.css">
+	</head>
+<body>
+	<header>
+	</header>
+
+	<div class="container">
+		<section class="filters">
+			<div class="locations">
+				<h3>States</h3>
+				<h4>&nbsp</h4>
+				<UL class="popover">
+					{% for state in states|sort(attribute='name') %}
+					<LI><h2>{{ state.name }}</h2>
+						<UL>
+							{% for city in state.cities|sort(attribute='name') %}
+								<LI>{{ city.name }}</LI>
+							{% endfor %}
+						</UL>
+					{% endfor %}
+					</LI>
+				</UL>
+			</div><div class="amenity">
+				<h3>Amenities</h3>
+				<h4>&nbsp</h4>
+				<ul class="popover">
+					{% for amenity in amenities %}
+						<li>{{ amenity.name }}</li>
+					{% endfor %}
+				</ul>
+			</div><button>Search</button>
+		</section>
+
+		<section class="places">
+			<h1>Places</h1>
+			<div class="squares">
+				{% for place in places|sort(attribute='name') %}
+				<article>
+					<h2>{{ place.name }}</h2>
+					<div class="price_by_night">${{ place.price_by_night }}</div>
+					<div class="information">
+						<div class="max_guest">{{ place.max_guest }} Guest</div>
+						<div class="number_rooms">{{ place.number_rooms }} Bedrooms</div>
+						<div class="number_bathrooms">{{ place.number_bathrooms }} Bathroom</div>
+					</div>
+					<div class="u_d">
+						<div class="user"><b>Owner:</b> {{ place.user.first_name }} {{ place.user.last_name }}</div>
+						<div class="description">{{ place.description }}</div>
+					</div>
+				</article>
+				{% endfor %}
+			</div>
+		</section>
+	</div>
+	
+
+	<footer>
+		Holberton School
+	</footer>
+</body>
+</html>
